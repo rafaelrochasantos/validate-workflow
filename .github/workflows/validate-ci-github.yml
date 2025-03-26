@@ -8,6 +8,6 @@ jobs:
   call-workflow:
     uses: rafaelrochasantos/poc-centralize-workflow/.github/workflows/poc-github-workflow.yml@main
     with:
-      username: Rafael
+      config-path: "test/ci"
     secrets:
       personal_access_token: "validate"
