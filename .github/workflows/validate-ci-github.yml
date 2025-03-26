@@ -5,7 +5,7 @@ on:
 
 jobs:
   call-workflow:
-    uses: rafaelrochasantos/poc-centralize-workflow/blob/main/.github/workflows/poc-github-workflow.yml@main
+    uses: rafaelrochasantos/poc-centralize-workflow/.github/workflows/poc-github-workflow.yml@main
     with:
       username: Rafael
     secrets:
