@@ -1,0 +1,12 @@
+name: Validade CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call-workflow:
+    uses: rafaelrochasantos/poc-centralize-workflow/blob/main/.github/workflows/poc-github-workflow.yml@main
+    with:
+      username: Rafael
+    secrets:
+      personal_access_token: "validate"
