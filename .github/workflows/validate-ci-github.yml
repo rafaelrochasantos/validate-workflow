@@ -1,8 +1,9 @@
 name: Validade CI
 
 on:
-  workflow_dispatch:
-
+  push:
+    branches:
+      - main
 jobs:
   call-workflow:
     uses: rafaelrochasantos/poc-centralize-workflow/.github/workflows/poc-github-workflow.yml@main
