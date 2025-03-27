@@ -3,7 +3,7 @@ name: Validade CI
 on:
   push:
     branches:
-      -  (feat|fix|test|refactor|release/**)
+      -  (feat/**|fix/**|test/**|refactor/**|release/**)
   pull_request:
     branches:
         - (main|develop|master)
