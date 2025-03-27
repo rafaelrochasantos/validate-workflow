@@ -3,8 +3,10 @@ name: Validade CI
 on:
   push:
     branches:
-      - main
-
+      -  (feat|fix|test|refactor|release/**)
+  pull_request:
+    branches:
+        - (main|develop|master)
 jobs:
   pipeline-develop:
     name: 'pipeline-develop'
