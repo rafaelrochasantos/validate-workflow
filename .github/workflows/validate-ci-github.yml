@@ -4,16 +4,8 @@ on:
   push:
     branches:
       - main
+
 jobs:
-  job-test:
-    name: 'job-test'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Run Checkout Branch
-        run: |
-          echo "Checkout Branch"
-
   call-workflow:
     name: 'call-workflow'
     uses: rafaelrochasantos/poc-centralize-workflow/.github/workflows/poc-github-workflow.yml@main
