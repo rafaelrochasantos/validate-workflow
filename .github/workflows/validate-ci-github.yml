@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI-CD
 
 on:
   push:
@@ -16,8 +16,8 @@ on:
         - develop
         - master
 jobs:
-  pipeline-develop:
-    name: 'CI/CD'
+  pipeline:
+    name: 'Pipeline CI-CD'
     uses: rafaelrochasantos/poc-centralize-workflow/.github/workflows/poc-github-workflow.yml@develop
     with:
       config-path: "test/ci"
