@@ -18,7 +18,7 @@ on:
 jobs:
   pipeline-develop:
     name: 'pipeline-develop'
-    uses: rafaelrochasantos/poc-centralize-workflow/.github/workflows/poc-github-workflow.yml@develp
+    uses: rafaelrochasantos/poc-centralize-workflow/.github/workflows/poc-github-workflow.yml@develop
     with:
       config-path: "test/ci"
     secrets:
