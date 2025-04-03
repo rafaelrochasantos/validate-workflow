@@ -1,2 +1,2 @@
 validar novamente a pipeline
-O objetivo é validar o composition action
+O objetivo é validar o composition actiona
