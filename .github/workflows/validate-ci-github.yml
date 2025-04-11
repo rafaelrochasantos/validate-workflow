@@ -1,6 +1,7 @@
 name: CI-CD
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - "feat/**"
@@ -18,15 +19,10 @@ on:
 jobs:
   pipeline:
     name: 'Pipeline CI-CD'
-    runs-on: ubuntu-latest
-    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
-    steps:
-      - uses: rafaelrochasantos/poc-centralize-workflow/.github/workflows/poc-github-workflow.yml@develop
-        with:
-          REGISTY_NAME_FAKE: ${{ vars.REGISTY_NAME_FAKE }}
-          NAME_PROJECT_FAKE: ${{ vars.NAME_PROJECT_FAKE }}
-          LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE: ${{ vars.LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE }}
-          PROJECT_FAKE: ${{ vars.PROJECT_FAKE }}
-          ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
-    #uses: rafaelrochasantos/poc-centralize-workflow/.github/workflows/poc-github-workflow.yml@develop
-      
+    uses: rafaelrochasantos/poc-centralize-workflow/.github/workflows/poc-github-workflow.yml@develop
+    with:
+      REGISTY_NAME_FAKE: ${{ vars.REGISTY_NAME_FAKE }}
+      NAME_PROJECT_FAKE: ${{ vars.NAME_PROJECT_FAKE }}
+      LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE: ${{ vars.LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE }}
+      PROJECT_FAKE: ${{ vars.PROJECT_FAKE }}
+      ENVIRONMENT: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
