@@ -19,12 +19,6 @@ jobs:
   pipeline:
     name: 'Pipeline CI-CD'
     uses: rafaelrochasantos/poc-centralize-workflow/.github/workflows/poc-github-workflow.yml@develop
-    secrets:
-      AZURE_CLIENT_ID_FAKE: ${{ secrets.AZURE_CLIENT_ID_FAKE }}
-      AZURE_CLIENT_SECRET_FAKE: ${{ secrets.AZURE_CLIENT_SECRET_FAKE }}
-      CREDENTIALS_FAKE: ${{ secrets.CREDENTIALS_FAKE }}
-      CORP_REGISTRY_USERNAME_FAKE: ${{ secrets.CORP_REGISTRY_USERNAME_FAKE }}
-      CORP_REGISTRY_PASSWORD_FAKE: ${{ secrets.CORP_REGISTRY_PASSWORD_FAKE }}
     with:
       REGISTY_NAME_FAKE: ${{ vars.REGISTY_NAME_FAKE }}
       NAME_PROJECT_FAKE: ${{ vars.NAME_PROJECT_FAKE }}
