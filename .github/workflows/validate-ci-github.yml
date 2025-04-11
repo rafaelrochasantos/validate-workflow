@@ -23,6 +23,6 @@ jobs:
     with:
       REGISTY_NAME_FAKE: ${{ vars.REGISTY_NAME_FAKE }}
       NAME_PROJECT_FAKE: ${{ vars.NAME_PROJECT_FAKE }}
-      LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE: ${{ vars.LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE }}
+      LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE: "Ola mundo"
       PROJECT_FAKE: ${{ vars.PROJECT_FAKE }}
       ENVIRONMENT: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
