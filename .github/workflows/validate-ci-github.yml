@@ -33,3 +33,12 @@ jobs:
       CREDENTIALS_FAKE: ${{ secrets.CREDENTIALS_FAKE }}
       CORP_REGISTRY_USERNAME_FAKE: ${{ secrets.CORP_REGISTRY_USERNAME_FAKE }}
       CORP_REGISTRY_PASSWORD_FAKE: ${{ secrets.CORP_REGISTRY_PASSWORD_FAKE }}
+
+  test:
+    name: "Test get variables"
+    runs-on: ubuntu-latest
+    environment: 'staging'
+    steps:
+      - name: Get variables staging
+        run: |
+          echo ${{ vars.LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE }}
