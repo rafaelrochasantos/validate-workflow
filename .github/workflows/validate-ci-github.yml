@@ -1,4 +1,4 @@
-name: CI-CD
+name: CI-CD ${{ github.ref_name == 'main' && 'production' || 'staging' }}
 on:
   push:
     branches:
@@ -18,13 +18,18 @@ on:
 
 jobs:
   pipeline:
-    name: 'Pipeline CI-CD'
+    name: CI-CD ${{ github.ref_name == 'main' && 'production' || 'staging' }}
     uses: rafaelrochasantos/poc-centralize-workflow/.github/workflows/poc-github-workflow.yml@develop
     with:
-      REGISTY_NAME_FAKE: ${{ vars.REGISTY_NAME_FAKE }}
-      NAME_PROJECT_FAKE: ${{ vars.NAME_PROJECT_FAKE }}
-      LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE: ${{ vars.LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE }}
-      PROJECT_FAKE: ${{ vars.PROJECT_FAKE }}
+      REGISTY_NAME_FAKE: |
+        ${{ github.ref_name == 'main' && vars.REGISTY_NAME_FAKE_PRD || vars.REGISTY_NAME_FAKE_STG }}
+      NAME_PROJECT_FAKE: |
+        ${{ github.ref_name == 'main' && vars.NAME_PROJECT_FAKE_PRD || vars.NAME_PROJECT_FAKE_STG }}
+      LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE: |
+        ${{ github.ref_name == 'main' && vars.LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE_PRD ||
+        vars.LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE_STG }}
+      PROJECT_FAKE: ${{ github.ref_name == 'main' && vars.PROJECT_FAKE_PRD || vars.PROJECT_FAKE_STG }}
+      ENVIRONMENT: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
     secrets:
       AZURE_CLIENT_ID_FAKE: ${{ secrets.AZURE_CLIENT_ID_FAKE }}
       AZURE_CLIENT_SECRET_FAKE: ${{ secrets.AZURE_CLIENT_SECRET_FAKE }}
