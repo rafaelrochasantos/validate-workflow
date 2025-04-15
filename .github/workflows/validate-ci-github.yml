@@ -1,6 +1,6 @@
 name: CI-CD
 env:
-  ENVIRONMENT: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+  ENVIRONMENT_GLOBAL: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
       NAME_PROJECT_FAKE: ${{ vars.NAME_PROJECT_FAKE }}
       LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE: ${{ vars.LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE }}
       PROJECT_FAKE: ${{ vars.PROJECT_FAKE }}
-      ENVIRONMENT: $ENVIRONMENT
+      ENVIRONMENT: ${ENVIRONMENT_GLOBAL}
     secrets:
       AZURE_CLIENT_ID_FAKE: ${{ secrets.AZURE_CLIENT_ID_FAKE }}
       AZURE_CLIENT_SECRET_FAKE: ${{ secrets.AZURE_CLIENT_SECRET_FAKE }}
