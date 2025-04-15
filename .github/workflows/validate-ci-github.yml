@@ -1,7 +1,4 @@
 name: CI-CD
-env:
-  ENVIRONMENT_GLOBAL: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
-
 on:
   push:
     branches:
@@ -24,7 +21,6 @@ jobs:
     name: 'Pipeline CI-CD'
     uses: rafaelrochasantos/poc-centralize-workflow/.github/workflows/poc-github-workflow.yml@develop
     with:
-      ENVIRONMENT: 'staging'
       REGISTY_NAME_FAKE: ${{ vars.REGISTY_NAME_FAKE }}
       NAME_PROJECT_FAKE: ${{ vars.NAME_PROJECT_FAKE }}
       LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE: ${{ vars.LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE }}
