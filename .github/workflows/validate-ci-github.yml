@@ -1,4 +1,4 @@
-name: CI-CD ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+name: CI-CD
 on:
   push:
     branches:
