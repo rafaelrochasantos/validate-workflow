@@ -16,6 +16,12 @@ on:
         - master
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: write
+  issues: write
+  pull-requests: write
+
 jobs:
   pipeline:
     name: CI-CD ${{ github.ref_name == 'main' && 'production' || 'staging' }}
