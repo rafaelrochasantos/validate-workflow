@@ -3,7 +3,7 @@
     "main",
     "master",
     {
-      "name": "feat/**",
+      "name": "feat/implements-pipeline-validate-yml",
       "prerelease": "rc"
     }
   ],
