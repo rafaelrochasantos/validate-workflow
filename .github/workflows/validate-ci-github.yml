@@ -1,5 +1,4 @@
-name: Validade CI
-
+name: CI-CD
 on:
   push:
     branches:
@@ -8,6 +7,8 @@ on:
       - "test/**"
       - "refactor/**"
       - "release/[0-9].[0-9].[0-9]"
+    paths:
+      - '.github/workflows/validate-ci-github.yml'
   pull_request:
     types:
       - closed
@@ -15,11 +16,32 @@ on:
         - main
         - develop
         - master
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: write
+  issues: write
+  pull-requests: write
+
 jobs:
-  pipeline-develop:
-    name: 'pipeline-develop'
-    uses: rafaelrochasantos/poc-centralize-workflow/.github/workflows/poc-github-workflow.yml@main
+  pipeline:
+    name: CI-CD ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+    uses: rafaelrochasantos/poc-centralize-workflow/.github/workflows/poc-github-workflow.yml@develop
     with:
-      config-path: "test/ci"
+      REGISTY_NAME_FAKE: |
+        ${{ github.ref_name == 'main' && vars.REGISTY_NAME_FAKE_PRD || vars.REGISTY_NAME_FAKE_STG }}
+      NAME_PROJECT_FAKE: |
+        ${{ github.ref_name == 'main' && vars.NAME_PROJECT_FAKE_PRD || vars.NAME_PROJECT_FAKE_STG }}
+      LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE: |
+        ${{ github.ref_name == 'main' && vars.LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE_PRD ||
+        vars.LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE_STG }}
+      PROJECT_FAKE: ${{ github.ref_name == 'main' && vars.PROJECT_FAKE_PRD || vars.PROJECT_FAKE_STG }}
+      ENVIRONMENT: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
     secrets:
-      personal_access_token: "validate"
+      AZURE_CLIENT_ID_FAKE: ${{ secrets.AZURE_CLIENT_ID_FAKE }}
+      AZURE_CLIENT_SECRET_FAKE: ${{ secrets.AZURE_CLIENT_SECRET_FAKE }}
+      CREDENTIALS_FAKE: ${{ secrets.CREDENTIALS_FAKE }}
+      CORP_REGISTRY_USERNAME_FAKE: ${{ secrets.CORP_REGISTRY_USERNAME_FAKE }}
+      CORP_REGISTRY_PASSWORD_FAKE: ${{ secrets.CORP_REGISTRY_PASSWORD_FAKE }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
