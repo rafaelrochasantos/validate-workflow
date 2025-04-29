@@ -7,6 +7,8 @@ on:
       - "test/**"
       - "refactor/**"
       - "release/[0-9].[0-9].[0-9]"
+    paths:
+      - '.github/workflows/validate-ci-github.yml'
   pull_request:
     types:
       - closed
