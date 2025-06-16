@@ -1,11 +1,7 @@
 {
   "branches": [
     "main",
-    "master",
-    {
-      "name": "feat/implements-pipeline-validate-yml",
-      "prerelease": "rc"
-    }
+    "master"
   ],
   "plugins": [
     "@semantic-release/commit-analyzer",
