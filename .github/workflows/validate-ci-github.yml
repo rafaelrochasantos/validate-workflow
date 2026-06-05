@@ -38,6 +38,7 @@ jobs:
         vars.LOCATION_DOCKERFILE_DOCKER_COMPOSE_FAKE_STG }}
       PROJECT_FAKE: ${{ github.ref_name == 'main' && vars.PROJECT_FAKE_PRD || vars.PROJECT_FAKE_STG }}
       ENVIRONMENT: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+      CA_APP_BACKEND: ${{ vars.CA_APP_BACKEND }}
     secrets:
       AZURE_CLIENT_ID_FAKE: ${{ secrets.AZURE_CLIENT_ID_FAKE }}
       AZURE_CLIENT_SECRET_FAKE: ${{ secrets.AZURE_CLIENT_SECRET_FAKE }}
